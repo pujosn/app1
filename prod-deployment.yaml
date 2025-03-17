@@ -69,6 +69,6 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  StorageClassName: standard-rwo
+  storageclassname: standard-rwo
 
  
