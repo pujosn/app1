@@ -21,6 +21,8 @@ spec:
             cpu: "50m"
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: pv-staging
 
 
 ---
@@ -40,15 +42,27 @@ spec:
 
 ---
 
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: pvc-staging
+#   namespace: production-ns
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 15Gi
+#   storageClassName: standard
+
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: PersistentVolume
 metadata:
-  name: pvc-staging
-  namespace: production-ns
+  name: pv-staging
 spec:
+  capacity:
+    storage: 6Gi
   accessModes:
     - ReadWriteOnce
-  resources:
-    requests:
-      storage: 15Gi
-  storageClassName: standard
+  storageClassName: standard-rwo
+ 
