@@ -21,10 +21,10 @@ spec:
             cpu: "50m"
         ports:
         - containerPort: 80
-        volumes:
-        - name: app-strorage
-          persistentVolumeClaim:
-          claimName: pvc-staging
+    volumes:
+      - name: app-strorage
+        persistentVolumeClaim:
+          claimName: pvc-prod
         
 
 
@@ -48,7 +48,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-staging
+  name: pvc-prod
   namespace: production-ns
 spec:
   accessModes:
