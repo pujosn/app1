@@ -38,16 +38,18 @@ pipeline {
             }
         }
 
-        stage('Deploy to Staging') {
-            steps {
-                script {
-                    withCredentials([file(credentialsId: 'gcp-service-account', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
-                    sh '''
-                    gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
-                    gcloud container clusters get-credentials $GKE_CLUSTER --zone us-central1-f
-                    kubectl config set-context --current --namespace=${STAGING_NAMESPACE}
-                    kubectl apply -f staging-deployment.yaml
-                    '''
+            stage('Deploy to Staging') {
+                steps {
+                    script {
+                        withCredentials([file(credentialsId: 'gcp-service-account', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                        sh '''
+                        gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+                        gcloud container clusters get-credentials $GKE_CLUSTER --zone us-central1-f
+                        kubectl config set-context --current --namespace=${STAGING_NAMESPACE}
+                        kubectl apply -f staging-deployment.yaml
+                        '''
+                    }
+                }
             }
         }
 
