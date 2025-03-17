@@ -22,10 +22,10 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-        - mounthsPath: "/data"
-          name: storage 
-    volumes:
-      - name: strorage
+        - mountPath: "/data"
+          name: storage
+      volumes:
+      - name: storage
         persistentVolumeClaim:
           claimName: pvc-prod
         
@@ -48,6 +48,16 @@ spec:
 
 ---
 
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: standard-rwo
+provisioner: pd.csi.storage.gke.io
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+
+---
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -59,5 +69,6 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  storageClassName: standard-rwo
+  StorageClassName: standard-rwo
+
  
