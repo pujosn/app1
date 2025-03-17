@@ -21,8 +21,11 @@ spec:
             cpu: "50m"
         ports:
         - containerPort: 80
+        volumeMounts:
+        - mounthsPath: "/data"
+          name: storage 
     volumes:
-      - name: app-strorage
+      - name: strorage
         persistentVolumeClaim:
           claimName: pvc-prod
         
@@ -55,6 +58,6 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 10Gi
   storageClassName: standard-rwo
  
