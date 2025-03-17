@@ -37,3 +37,18 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 80
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-staging
+  namespace: production-ns
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: standard
