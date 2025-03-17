@@ -20,7 +20,7 @@ pipeline {
         stage('Testing') {
             steps {
                 sh 'echo "Running HTML Validation"'
-                sh 'tidy -errors index.html || true' // Contoh validasi HTML
+                sh 'tidy -errors index.html || true' // validasi HTML
             }
         }
 
@@ -40,11 +40,14 @@ pipeline {
 
         stage('Deploy to Staging') {
             steps {
-                sh '''
-                gcloud container clusters get-credentials $GKE_CLUSTER --zone asia-southeast1-a
-                kubectl config set-context --current --namespace=$STAGING_NAMESPACE
-                kubectl apply -f staging-deployment.yaml
-                '''
+                script {
+                    withCredentials([file(credentialsId: 'gcp-service-account', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                    sh '''
+                    gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+                    gcloud container clusters get-credentials $GKE_CLUSTER --zone us-central1-f
+                    kubectl config set-context --current --namespace=${STAGING_NAMESPACE}
+                    kubectl apply -f staging-deployment.yaml
+                    '''
             }
         }
 
@@ -58,8 +61,8 @@ pipeline {
         stage('Deploy to Production') {
             steps {
                 sh '''
-                gcloud container clusters get-credentials $GKE_CLUSTER --zone asia-southeast1-a
-                kubectl config set-context --current --namespace=$PROD_NAMESPACE
+                gcloud container clusters get-credentials $GKE_CLUSTER --zone us-central1-f
+                kubectl config set-context --current --namespace=${PROD_NAMESPACE}
                 kubectl apply -f prod-deployment.yaml
                 '''
             }
