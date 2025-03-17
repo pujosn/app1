@@ -51,8 +51,8 @@ spec:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: standard-rwo
-provisioner: pd.csi.storage.gke.io
+  name: standard
+provisioner: kubernetes.io/gce-pd	
 volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
 
@@ -69,6 +69,6 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  storageClassName: standard-rwo
+  storageClassName: standard
 
  
