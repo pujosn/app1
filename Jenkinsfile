@@ -69,6 +69,7 @@ pipeline {
                 kubectl apply -f prod-deployment.yaml
                 kubectl apply -f pvc-prod.yaml
                 kubectl apply -f ingress.yaml
+                kubectl apply -f cert-prod.yaml
                 '''
             }
         }
