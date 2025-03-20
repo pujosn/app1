@@ -17,8 +17,8 @@ spec:
         image: pujosn/web-app2:1.1.0
         resources:
           limits:
-            memory: "100"
-            cpu: "300m"
+            memory: "100Mi"
+            cpu: "500m"
         ports:
         - containerPort: 80
         volumeMounts:
