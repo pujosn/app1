@@ -16,8 +16,6 @@ spec:
       - name: web-app
         image: pujosn/web-app2:1.1.0
         resources:
-          request: 
-          cpu: "100m"
           limits:
             memory: "100"
             cpu: "300m"
@@ -44,24 +42,7 @@ spec:
 
 
 
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: hpa-prod
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: myapp
-  minReplicas: 1
-  maxReplicas: 3
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 40
+
 
 
 
