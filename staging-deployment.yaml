@@ -19,14 +19,15 @@ spec:
           limits:
             memory: "100"
             cpu: "500m"
-      - volumePath: "/data"
-        name: storage-volume
-      volumes:
-      - name: storage-volume
-        peristentVolumeClaim:
-          claimname: pvc-staging     
-        ports:
-        - containerPort: 80
+      ports:
+      - containerPort: 80
+      volumeMounts:
+      - mountPath: "/data"
+
+    volumes: 
+    - name: storage-volume
+      persistentVolumeClaim:
+        claimName: pvc-staging
        
 
 ---
