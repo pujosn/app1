@@ -16,9 +16,11 @@ spec:
       - name: web-app
         image: pujosn/web-app2:1.1.0
         resources:
+          request: 
+          cpu: "100m"
           limits:
-            memory: "50"
-            cpu: "50m"
+            memory: "100"
+            cpu: "300m"
         ports:
         - containerPort: 80
                 
