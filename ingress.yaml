@@ -10,7 +10,7 @@ metadata:
     name: app-ingress
 spec:
   rules:
-  - host: takoples.my.id
+  - host: www.takoples.my.id
     http:
       paths:
       - pathType: Prefix
