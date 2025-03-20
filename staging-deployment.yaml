@@ -22,7 +22,8 @@ spec:
       ports:
       - containerPort: 80
       volumeMounts:
-      - mountPath: "/data"
+      - name: storage-volume
+        mountPath: "/data"
 
     volumes: 
     - name: storage-volume
@@ -39,7 +40,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: web-app
+    app: web-staging
   ports:
   - protocol: TCP
     port: 80
