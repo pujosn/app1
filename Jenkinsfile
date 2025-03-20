@@ -66,10 +66,10 @@ pipeline {
                 sh '''
                 gcloud container clusters get-credentials $GKE_CLUSTER --zone us-central1-f
                 kubectl config set-context --current --namespace=${PROD_NAMESPACE}
-                kubectl apply -f prod-deployment.yaml
-                kubectl apply -f pvc-prod.yaml
-                kubectl apply -f ingress.yaml
-                kubectl apply -f cert-prod.yaml
+                kubectl apply -f prod-deploy-app/prod-deployment.yaml
+                kubectl apply -f prod-deploy-app/pvc-prod.yaml
+                kubectl apply -f prod-deploy-app/ingress.yaml
+                kubectl apply -f prod-deploy-app/cert-prod.yaml
                 '''
             }
         }
