@@ -68,6 +68,7 @@ pipeline {
                 gcloud container clusters get-credentials $GKE_CLUSTER --zone us-central1-f
                 kubectl config set-context --current --namespace=${PROD_NAMESPACE}
                 kubectl apply -f prod-deployment.yaml
+                kubectl apply -f pvc-prod.yaml
                 kubectl apply -f hpa-prod.yaml
                 '''
             }
