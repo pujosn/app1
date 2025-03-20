@@ -3,18 +3,17 @@ kind: Deployment
 metadata:
   name: web-app-staging
 spec:
-  replicas: 2
   selector:
     matchLabels:
-      app: web-app
+      app: web-staging
   template:
     metadata:
       labels:
-        app: web-app
+        app: web-staging
         namespace: staging-ns
     spec:
       containers:
-      - name: web-app
+      - name: web-staging
         image: pujosn/web-app2:1.1.0
         resources:
           limits:
@@ -39,7 +38,7 @@ metadata:
   name: service-staging
   namespace: staging-ns
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: web-staging
   ports:
