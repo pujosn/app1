@@ -47,6 +47,7 @@ pipeline {
                         gcloud container clusters get-credentials $GKE_CLUSTER --zone us-central1-f
                         kubectl config set-context --current --namespace=${STAGING_NAMESPACE}
                         kubectl apply -f staging-deployment.yaml
+                        kubectl apply -f pvc-staging.yaml
                         kubectl apply -f hpa-staging.yaml
                         '''
                     }

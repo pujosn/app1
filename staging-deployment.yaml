@@ -17,18 +17,18 @@ spec:
         image: pujosn/web-app2:1.1.0
         resources:
           limits:
-            memory: "100"
+            memory: "100Mi"
             cpu: "500m"
-      ports:
-      - containerPort: 80
-      volumeMounts:
-      - name: storage-volume
-        mountPath: "/data"
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: storage-volume
+          mountPath: "/data"
 
-    volumes: 
-    - name: storage-volume
-      persistentVolumeClaim:
-        claimName: pvc-staging
+      volumes: 
+      - name: storage-volume
+        persistentVolumeClaim:
+          claimName: pvc-staging
        
 
 ---
