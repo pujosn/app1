@@ -46,18 +46,18 @@ pipeline {
                         gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
                         gcloud container clusters get-credentials $GKE_CLUSTER --zone us-central1-f
                         kubectl config set-context --current --namespace=${STAGING_NAMESPACE}
-                        kubectl apply -f staging-deployment.yaml
-                        kubectl apply -f pvc-staging.yaml
+                        kubectl apply -f staging-deploy-app/staging-deployment.yaml
+                        kubectl apply -f staging-deploy-app/pvc-staging.yaml
                         '''
                     }
                 }
             }
         }
 
-        stage('Approval for Production') {
+        stage('Manual Approval for Production') {
             steps {
                 input message: 'Deploy to Production?', ok: 'Deploy'
-                // stage manual approval
+                
             }
         }
 
