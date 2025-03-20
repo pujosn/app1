@@ -68,6 +68,7 @@ pipeline {
                 kubectl config set-context --current --namespace=${PROD_NAMESPACE}
                 kubectl apply -f prod-deployment.yaml
                 kubectl apply -f pvc-prod.yaml
+                kubectl apply -f ingress.yaml
                 '''
             }
         }
