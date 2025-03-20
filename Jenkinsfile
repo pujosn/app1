@@ -48,7 +48,6 @@ pipeline {
                         kubectl config set-context --current --namespace=${STAGING_NAMESPACE}
                         kubectl apply -f staging-deployment.yaml
                         kubectl apply -f pvc-staging.yaml
-                        kubectl apply -f hpa-staging.yaml
                         '''
                     }
                 }
@@ -69,7 +68,6 @@ pipeline {
                 kubectl config set-context --current --namespace=${PROD_NAMESPACE}
                 kubectl apply -f prod-deployment.yaml
                 kubectl apply -f pvc-prod.yaml
-                kubectl apply -f hpa-prod.yaml
                 '''
             }
         }
