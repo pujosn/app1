@@ -5,15 +5,15 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: web-app
+      app: web-staging
   template:
     metadata:
       labels:
-        app: web-app
+        app: web-staging
         namespace: staging-ns
     spec:
       containers:
-      - name: web-app
+      - name: web-staging
         image: pujosn/web-app2:1.1.0
         resources:
           limits:

@@ -10,7 +10,7 @@ spec:
     metadata:
       labels:
         app: web-app
-        namespace: production-ns
+        namespace: prod-ns 
     spec:
       containers:
       - name: web-app
@@ -40,6 +40,29 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 80
+
+
+
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-prod
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: myapp
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 40
+
 
 
 

@@ -7,7 +7,7 @@ pipeline {
         GKE_CLUSTER       = "cluster-robin"
         GCP_PROJECT       = "robin-454008"
         STAGING_NAMESPACE = "staging-ns"
-        PROD_NAMESPACE    = "production-ns"
+        PROD_NAMESPACE    = "prod-ns"
     }
 
     stages {
@@ -47,6 +47,7 @@ pipeline {
                         gcloud container clusters get-credentials $GKE_CLUSTER --zone us-central1-f
                         kubectl config set-context --current --namespace=${STAGING_NAMESPACE}
                         kubectl apply -f staging-deployment.yaml
+                        kubectl apply -f hpa-staging.yaml
                         '''
                     }
                 }
@@ -66,6 +67,7 @@ pipeline {
                 gcloud container clusters get-credentials $GKE_CLUSTER --zone us-central1-f
                 kubectl config set-context --current --namespace=${PROD_NAMESPACE}
                 kubectl apply -f prod-deployment.yaml
+                kubectl apply -f hpa-prod.yaml
                 '''
             }
         }
