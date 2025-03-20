@@ -29,7 +29,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: service-prod
-  namespace: production-ns
+  namespace: prod-ns
 spec:
   type: LoadBalancer
   selector:
