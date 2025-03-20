@@ -21,6 +21,14 @@ spec:
             cpu: "300m"
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: storage-volume
+          mountPath: "/data"
+
+      volumes: 
+      - name: storage-volume
+        persistentVolumeClaim:
+          claimName: pvc-prod
                 
 
 
