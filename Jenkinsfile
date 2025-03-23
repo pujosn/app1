@@ -44,7 +44,7 @@ pipeline {
                         withCredentials([file(credentialsId: 'gcp-service-account', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                         sh '''
                         gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
-                        gcloud container clusters get-credentials $GKE_CLUSTER --zone us-central1-f
+                        gcloud container clusters get-credentials $GKE_CLUSTER --zone us-central1-c
                         kubectl config set-context --current --namespace=${STAGING_NAMESPACE}
                         kubectl apply -f staging-deploy-app/staging-deployment.yaml
                         kubectl apply -f staging-deploy-app/pvc-staging.yaml
@@ -64,7 +64,7 @@ pipeline {
         stage('Deploy to Production') {
             steps {
                 sh '''
-                gcloud container clusters get-credentials $GKE_CLUSTER --zone us-central1-f
+                gcloud container clusters get-credentials $GKE_CLUSTER --zone us-central1-c
                 kubectl config set-context --current --namespace=${PROD_NAMESPACE}
                 kubectl apply -f prod-deploy-app/prod-deployment.yaml
                 kubectl apply -f prod-deploy-app/pvc-prod.yaml 
