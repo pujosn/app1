@@ -5,4 +5,4 @@ metadata:
   namespace: prod-ns
 spec:
   domains:
-    - www.takoples.my.id
+    - www.mamat.my.id

@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-app-staging
+  name: web-jam-staging
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: web-staging
@@ -18,8 +18,8 @@ spec:
         image: pujosn/app-jam:1.1.0
         resources:
           limits:
-            memory: "100Mi"
-            cpu: "300m"
+            memory: "50Mi"
+            cpu: "100m"
         ports:
         - containerPort: 80
         volumeMounts:
