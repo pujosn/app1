@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE      = "pujosn/web-app2"
+        DOCKER_IMAGE      = "pujosn/app-jam"
         IMAGE_TAG         = "1.1.0"
         GKE_CLUSTER       = "cluster-robin"
         GCP_PROJECT       = "robin-454008"
@@ -67,7 +67,7 @@ pipeline {
                 gcloud container clusters get-credentials $GKE_CLUSTER --zone us-central1-f
                 kubectl config set-context --current --namespace=${PROD_NAMESPACE}
                 kubectl apply -f prod-deploy-app/prod-deployment.yaml
-                kubectl apply -f prod-deploy-app/pvc-prod.yaml
+                kubectl apply -f prod-deploy-app/pvc-prod.yaml 
                 kubectl apply -f prod-deploy-app/ingress.yaml
                 kubectl apply -f prod-deploy-app/cert-prod.yaml
                 '''

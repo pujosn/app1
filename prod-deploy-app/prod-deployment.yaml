@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: web-app
-        image: pujosn/web-app2:1.1.0
+        image: pujosn/app-jam:1.1.0
         resources:
           limits:
             memory: "100Mi"
