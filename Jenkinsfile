@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE      = "pujosn/app-jam"
-        IMAGE_TAG         = "1.1"
+        IMAGE_TAG         = "1.2"
         GKE_CLUSTER       = "cluster-brook"
         GCP_PROJECT       = "robin-454008"
         STAGING_NAMESPACE = "staging-ns"
@@ -20,7 +20,7 @@ pipeline {
         stage('Testing') {
             steps {
                 sh 'echo "Running HTML Validation"'
-                sh 'tidy -errors index.html || true' 
+                sh 'tidy -errors index.html || true' // validasi HTML
             }
         }
 
