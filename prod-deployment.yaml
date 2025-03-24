@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-jam-staging
+  name: web-jam-prod
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: web-staging
+      app: web-app
   template:
     metadata:
       labels:
-        app: web-staging
-        namespace: staging-ns
+        app: web-app
+        namespace: prod-ns 
     spec:
       containers:
-      - name: web-staging
-        image: pujosn/app-jam:1.1.1
+      - name: web-app
+        image: pujosn/app-jam:1.0
         resources:
           limits:
-            memory: "50Mi"
-            cpu: "100m"
+            memory: "100Mi"
+            cpu: "200m"
         ports:
         - containerPort: 80
         volumeMounts:
@@ -29,20 +29,31 @@ spec:
       volumes: 
       - name: storage-volume
         persistentVolumeClaim:
-          claimName: pvc-staging
-       
+          claimName: pvc-prod
+                
+
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-staging
-  namespace: staging-ns
+  name: service-prod
+  namespace: prod-ns
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
-    app: web-staging
+    app: web-app
   ports:
   - protocol: TCP
     port: 80
     targetPort: 80
+
+
+
+
+
+
+
+
+
+ 
