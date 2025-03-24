@@ -20,7 +20,7 @@ pipeline {
         stage('Testing') {
             steps {
                 sh 'echo "Running HTML Validation"'
-                sh 'tidy -errors index.html || true' // validasi HTML
+                sh 'tidy -errors index.html || true' 
             }
         }
 
