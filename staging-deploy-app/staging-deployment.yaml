@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: web-staging
-        image: pujosn/app-jam:1.0
+        image: pujosn/app-jam:1.1
         resources:
           limits:
             memory: "50Mi"
