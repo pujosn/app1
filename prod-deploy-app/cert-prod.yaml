@@ -5,4 +5,4 @@ metadata:
   namespace: prod-ns
 spec:
   domains:
-    - www.app1.takoples.my.id
+    - www.takoples.my.id
